@@ -1,18 +1,6 @@
 const apiKey = "50bcfb64b104453d865b22510aa2bc26";
 const pageSize = 10;
-// >===========
-// >===========
-// >===========>>
-function fetchNews() {
-  const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=${pageSize}`;
-  fetch(url)
-    .then((Response) => Response.json())
-    .then((data) => {
-      displayNews(data.articles);
-    })
-    .catch((error) => console.log(error));
-}
-// >======= *** DISPLAY NEWS *** ====>>
+
 function displayNews(articles) {
   const newsList = document.querySelector(".news-list");
   const asideList = document.querySelector(".aside");
@@ -70,6 +58,16 @@ function displayNews(articles) {
     asideList.appendChild(asideItem);
   });
 }
+function fetchNews() {
+  const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=${pageSize}`;
+  fetch(url)
+    .then((Response) => Response.json())
+    .then((data) => {
+      displayNews(data.articles);
+    })
+    .catch((error) => console.log(error));
+}
+// >======= *** DISPLAY NEWS *** ====>>
 // >===============>>
 // >===========>>
 window.onload = fetchNews;
