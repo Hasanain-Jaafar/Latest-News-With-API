@@ -1,3 +1,5 @@
+const fetch = require("node-fetch");
+
 exports.handler = async function (event, context) {
     const apiKey = process.env.NEWS_API_KEY;
     const country = event.queryStringParameters.country || "us";
@@ -6,7 +8,7 @@ exports.handler = async function (event, context) {
     const url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${apiKey}&pageSize=${pageSize}`;
   
     try {
-      const res = await fetch(url); // native fetch now supported on Netlify
+      const res = await fetch(url); 
       const data = await res.json();
   
       return {
