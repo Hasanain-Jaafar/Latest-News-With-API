@@ -1,6 +1,6 @@
 const apiKey = "50bcfb64b104453d865b22510aa2bc26";
 const pageSize = 10;
-
+// >======= *** DISPLAY NEWS *** ====>>
 function displayNews(articles) {
   const newsList = document.querySelector(".news-list");
   const asideList = document.querySelector(".aside");
@@ -27,12 +27,11 @@ function displayNews(articles) {
 
     listItem.innerHTML = `    
     <div class="article-img">
-      <img src = "${article.urlToImage}" alt="${
-      article.urlToImage || "Image Note found"
-    }" >
+      <img src = "${article.urlToImage || "./assets/missing-img.jpg"}" alt="${
+      article.urlToImage || "Image Note found"}" >
     </div>
     <a class="title" href="${article.url}" target="_blank"> ${article.title}</a>
-    <p class="description">${article.description  || "No description"}</p>
+    <p class="description">${article.description || "No description"}</p>
     <div class="source" >
     <span>[Source]</span>
     ${article.source.name} 
@@ -51,23 +50,22 @@ function displayNews(articles) {
     asideItem.innerHTML = `
     ➡️ <a href="${article.url}">${shortenTitle}</a>
     <div class="recent-date">${new Date(
-        article.publishedAt
-      ).toDateString()}</div>
+      article.publishedAt
+    ).toDateString()}</div>
     `;
     newsList.appendChild(listItem);
     asideList.appendChild(asideItem);
   });
 }
+// >======= *** FETCH NEWS FROM API *** ====>>
 function fetchNews() {
   const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=${pageSize}`;
   fetch(url)
-    .then((Response) => Response.json())
+    .then((response) => response.json())
     .then((data) => {
       displayNews(data.articles);
     })
     .catch((error) => console.log(error));
 }
-// >======= *** DISPLAY NEWS *** ====>>
-// >===============>>
-// >===========>>
+
 window.onload = fetchNews;
