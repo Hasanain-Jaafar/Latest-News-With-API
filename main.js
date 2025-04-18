@@ -1,5 +1,5 @@
-const apiKey = "50bcfb64b104453d865b22510aa2bc26";
-const pageSize = 10;
+// const apiKey = "50bcfb64b104453d865b22510aa2bc26";
+// const pageSize = 10;
 // >======= *** DISPLAY NEWS *** ====>>
 function displayNews(articles) {
   const newsList = document.querySelector(".news-list");
@@ -28,7 +28,8 @@ function displayNews(articles) {
     listItem.innerHTML = `    
     <div class="article-img">
       <img src = "${article.urlToImage || "./assets/missing-img.jpg"}" alt="${
-      article.urlToImage || "Image Note found"}" >
+      article.urlToImage || "Image Note found"
+    }" >
     </div>
     <a class="title" href="${article.url}" target="_blank"> ${article.title}</a>
     <p class="description">${article.description || "No description"}</p>
@@ -59,13 +60,26 @@ function displayNews(articles) {
 }
 // >======= *** FETCH NEWS FROM API *** ====>>
 function fetchNews() {
-  const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=${pageSize}`;
-  fetch(url)
-    .then((response) => response.json())
+  // const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=${pageSize}`;
+  // fetch("/api/news?country=us&pageSize=10")
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     displayNews(data.articles);
+  //   })
+  //   .catch((error) => console.log(error));
+  fetch("/api/news?country=us&pageSize=10")
+    .then((res) => res.json())
     .then((data) => {
-      displayNews(data.articles);
+      if (data.articles) {
+        displayNews(data.articles);
+      } else {
+        showError("API returned no articles");
+      }
     })
-    .catch((error) => console.log(error));
+    .catch((err) => {
+      console.error("Proxy error:", err);
+      showError("Failed to load news");
+    });
 }
 
 window.onload = fetchNews;
