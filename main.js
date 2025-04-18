@@ -58,6 +58,12 @@ function displayNews(articles) {
     asideList.appendChild(asideItem);
   });
 }
+// >=====>>
+function showError(message) {
+  const newsList = document.querySelector(".news-list");
+  newsList.innerHTML = `<li style="color:red; padding: 1rem">${message}</li>`;
+}
+
 // >======= *** FETCH NEWS FROM API *** ====>>
 function fetchNews() {
   // const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=${pageSize}`;
