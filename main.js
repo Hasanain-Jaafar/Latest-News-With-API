@@ -1,5 +1,5 @@
-// const apiKey = "50bcfb64b104453d865b22510aa2bc26";
-// const pageSize = 10;
+const apiKey = "50bcfb64b104453d865b22510aa2bc26";
+const pageSize = 10;
 // >======= *** DISPLAY NEWS *** ====>>
 function displayNews(articles) {
   const newsList = document.querySelector(".news-list");
@@ -66,27 +66,17 @@ function showError(message) {
 
 // >======= *** FETCH NEWS FROM API *** ====>>
 function fetchNews() {
-  // const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=${pageSize}`;
-  // fetch("/api/news?country=us&pageSize=10")
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     displayNews(data.articles);
-  //   })
-  //   .catch((error) => console.log(error));
+  const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=${pageSize}`;
   fetch("/api/news?country=us&pageSize=10")
-    .then((res) => res.json())
+    .then((response) => response.json())
     .then((data) => {
-      console.log("News API Response:", data);
-      if (data.articles && data.articles.length > 0) {
-        displayNews(data.articles);
-      } else {
-        showError("API returned no articles");
-      }
+      displayNews(data.articles);
     })
     .catch((err) => {
       console.error("Proxy error:", err);
       showError("Failed to load news");
     });
+  
 }
 
 window.onload = fetchNews;
