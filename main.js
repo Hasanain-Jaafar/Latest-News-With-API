@@ -67,7 +67,7 @@ function showError(message) {
 // >======= *** FETCH NEWS FROM API *** ====>>
 function fetchNews() {
   const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=${pageSize}`;
-  fetch("/api/news?country=us&pageSize=10")
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       displayNews(data.articles);

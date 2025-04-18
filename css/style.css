@@ -76,8 +76,10 @@ ul li .description {
 ul li .source {
   color: rgba(0, 136, 255, 0.821);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 1rem;
   margin-top: 2rem;
+  margin-bottom: 1em;
 }
 .article-img {
   max-width: 100%;
@@ -85,6 +87,8 @@ ul li .source {
   margin-bottom: 1rem;
   overflow: hidden;
   position: relative;
+  border-radius: 6px;
+  box-shadow: 1px 1px 4px gray;
 }
 .article-img img {
   display: block;
@@ -95,6 +99,8 @@ aside {
   background-color: #fff;
   padding: 0 6px;
   position: relative;
+  border: 1px solid #9292929a;
+  border-radius: 5px;
 }
 aside > div {
   position: sticky;
@@ -102,8 +108,15 @@ aside > div {
 }
 aside h3 {
   padding: 4px 10px;
-  margin: 8px 0 8px 0;
-  color: #333;
+  margin: 1rem 0 ;
+  color: #333333e8;
+  background-color: #aadef3;
+  border: 1px solid #859cb954;
+  box-shadow: 1px 1px 5px lightgray;
+  border-radius: 5px;
+  letter-spacing: 1.3px;
+  font-size: 1.4rem;
+
 }
 .aside {
   margin: 0;
@@ -112,7 +125,7 @@ aside h3 {
   max-width: 400px;
 }
 .aside li {
-  padding: 8px 10px;
+  padding: 6px 10px 2px 10px;
   background-color: #ddd;
 }
 .aside li a {
