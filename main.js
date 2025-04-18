@@ -76,7 +76,8 @@ function fetchNews() {
   fetch("/api/news?country=us&pageSize=10")
     .then((res) => res.json())
     .then((data) => {
-      if (data.articles) {
+      console.log("News API Response:", data);
+      if (data.articles && data.articles.length > 0) {
         displayNews(data.articles);
       } else {
         showError("API returned no articles");
